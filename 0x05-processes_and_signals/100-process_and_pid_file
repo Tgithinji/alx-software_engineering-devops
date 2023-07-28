@@ -15,7 +15,7 @@ function signal_handler()
 # signal handler for SIGTERM
 trap 'echo "I hate the kill command";signal_handler' SIGTERM
 # signal handler for SIGINT
-trap 'echo "Y U no love me?!";signal_handler' SIGINT
+trap 'echo "Y U no love me?!";exit 0' SIGINT
 # signal handler for SIGQUIT
 trap 'signal_handler' SIGQUIT
 
