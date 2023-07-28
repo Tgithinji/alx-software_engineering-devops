@@ -4,7 +4,7 @@
 # I am invisible when recieving a SIGTERM signal
 
 function _sigterm {
-	echo "I am invisible"
+	echo "I am invisible!!!"
 }
 
 trap '_sigterm' SIGTERM
