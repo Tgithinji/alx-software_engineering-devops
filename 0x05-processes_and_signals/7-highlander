@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Script that displays To infinity and beyond indefinetly
+# with sleep in between
+# I am invisible when recieving a SIGTERM signal
+
+function _sigterm {
+	echo "I am invisible"
+}
+
+trap '_sigterm' SIGTERM
+
+i=1
+while [ "$i" -eq 1 ]
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
