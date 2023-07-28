@@ -1,2 +1,29 @@
 #!/usr/bin/env bash
-#
+# This script:
+# creates a file with its pid and sets signal handlers
+# for sigint and sigterm
+
+pid_file="/var/run/myscript.pid"
+
+# cleanup function
+function signal_handler()
+{
+	rm -f "$pid_file"
+	exit 0
+}
+
+# signal handler for SIGTERM
+trap 'echo "I hate the kill command";signal_handler' SIGTERM
+# signal handler for SIGINT
+trap 'echo "Y U no love me?!";signal_handler' SIGINT
+# signal handler for SIGQUIT
+trap 'signal_handler' SIGQUIT
+
+name=$(basename "$0")
+pid=$(pgrep -f "$name")
+echo "$pid" > "$pid_file"
+
+while [ true ]
+do
+	echo "To infinity and beyond"
+done
