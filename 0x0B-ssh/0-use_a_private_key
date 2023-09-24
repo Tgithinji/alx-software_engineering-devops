@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script uses ssh to connect6 to an ubuntu server
+
+ssh ubuntu@54.144.198.90
