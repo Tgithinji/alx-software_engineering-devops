@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script configures a Nginx server so that its HTTP response contains a custom header
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+sudo sed -i '/http {/a \\tadd_header X-Served-By $HOSTNAME;' /etc/nginx/nginx.conf
+
+sudo service nginx restart
