@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Displays information about subdomains
+
+display_func () {
+	# fetch the record type
+	record_type=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $4}')
+
+	# fetch the ip address
+	ip_addr=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $5}')
+	
+	# display information
+	echo "The subdomain $2 is a $record_type record and points to $ip_addr"
+}
+
+if [ $# -eq 2 ];
+then
+	display_func "$1" "$2"
+else
+	subdomains=("www" "lb-01" "web-01" "web-02")
+	for sub in "${subdomains[@]}";
+	do
+		display_func "$1" "$sub"
+	done
+fi
